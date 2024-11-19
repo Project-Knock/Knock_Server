@@ -1,0 +1,33 @@
+.infomation-display{
+    grid-area: display;
+    display:grid;
+    box-sizing: border-box;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    grid-template-columns: 1fr 5rem;
+    grid-template-rows: 1fr 1fr 2rem;
+    grid-template-areas: "temp ."
+    "humi ."
+    "timestemp reloadBtn";
+    color: white;
+    background: #082c0f;
+}
+.reload-button{
+    grid-area: reloadBtn;
+    border:none;
+}
+.temp{
+    margin: 0;
+    padding: 0;
+    grid-area: temp;
+}
+.humi{
+    margin: 0;
+    padding: 0;
+    grid-area: humi;
+}
+.timestemp{
+    grid-area: timestemp;
+    margin: 0;
+    padding: 0;
+}

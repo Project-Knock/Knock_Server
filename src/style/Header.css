@@ -1,0 +1,29 @@
+.header{
+    position:fixed;
+    top:0; left:0; right: 0;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-bottom: 1px #222 solid;
+}
+.logo{
+    margin: 0;
+    padding: 0;
+}
+.App{
+    padding-top: 5rem;
+}
+.button-items{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.button-item{
+    margin: 0 0 0 1rem;
+    padding: 0;
+}

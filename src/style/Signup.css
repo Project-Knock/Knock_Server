@@ -1,0 +1,51 @@
+.signup-container{
+    height: calc(100% - 10rem);
+}
+.signup-form{
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 5rem 1fr 5rem;
+    grid-template-rows: 5rem 1.2rem 0.5rem 1.2rem 0.5rem 1.2rem 0.5rem 1.2rem 0.5rem 2rem 3rem 1fr;
+    grid-template-areas: ". title ."
+    ". id ."
+    ". . ."
+    ". passwd ."
+    ". . ."
+    ". passwd-con ."
+    ". . ."
+    ". alter ."
+    ". . ."
+    ". signbt ."
+    ". link ."
+    ". . .";
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.title{
+    grid-area: title;
+}
+.id{
+    grid-area: id;
+    display: flex;
+    justify-content: space-between;
+}
+.passwd{
+    grid-area: passwd;
+    display: flex;
+    justify-content: space-between;
+}
+.passwd-config{
+    grid-area: passwd-con;
+    display: flex;
+    justify-content: space-between;
+}
+.signbt{
+    grid-area: signbt;
+}
+.login-link{
+    grid-area: link;
+}
+.alter{
+    grid-area: alter;
+}
