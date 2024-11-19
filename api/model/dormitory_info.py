@@ -1,9 +1,11 @@
 from flask import jsonify
 import pymysql
+from dotenv import load_dotenv
+import os
 
 class DormDB:
     def __init__(self):
-        self.db = pymysql.connect(host='localhost', user='admin', password='q1w2e3', db='knock')
+        self.db = pymysql.connect(host=os.environ.get('DB_HOST'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), db=os.environ.get('DB_NAME'))
         self.cur = self.db.cursor()
         print("connect ok")
     def getTempHumi(self, room):
