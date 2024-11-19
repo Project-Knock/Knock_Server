@@ -23,6 +23,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .idea
-api/__pycache__
+__pycache__
 flask_session
-api/model/__pycache__
