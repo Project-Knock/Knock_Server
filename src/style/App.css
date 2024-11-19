@@ -1,0 +1,12 @@
+.App{
+    height: 100%;
+    width: 100%;
+    padding-top: 5.25rem;
+    box-sizing: border-box;
+}
+body{
+    overflow:hidden;
+    box-sizing: border-box;
+    padding: 1.5rem 2.1875rem;
+    background-color: gray;
+}
