@@ -1,6 +1,6 @@
 import React, { Children, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import '../style/Navigate.css';
+import '../style/components/Navigate.css';
 import Bed from '../assets/image/Bed.svg';
 import Home from '../assets/image/Home.svg';
 import User from '../assets/image/User.svg';

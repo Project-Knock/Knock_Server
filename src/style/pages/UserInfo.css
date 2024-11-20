@@ -1,0 +1,36 @@
+.user-info{
+    display: grid;
+    background-color: none;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: 1fr 0.625rem 1fr 0.625rem 1fr;
+    grid-template-rows: 1fr 0.625rem 4rem 0.625rem 1fr 0.625rem 1fr;
+    grid-template-areas: 
+    "display display display display display"
+    "display display display display display"
+    "display display display display display";
+}
+.userinfo-display{
+    grid-area: display;
+    grid-template-columns: 0.625rem 1fr 0.625rem;
+    grid-template-rows: 2.5rem 1fr 0.625rem;
+    grid-template-areas: 
+    ". title ."
+    ". content .";
+    display: grid;
+    background-color: white;
+    border-radius: 1.5rem;
+}
+.title{
+    display: flex;
+    grid-area: title;
+    align-items: center;
+    margin: 0 0 0 0.875rem;
+    padding: 0;
+    font-size: 1.25rem;
+}
+.content{
+    grid-area: content;
+    border-radius: 0.875rem;
+    background-color: #b0b0b0;
+}

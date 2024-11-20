@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import '../style/Login.css';
+import '../style/pages/Login.css';
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -44,6 +44,7 @@ const Login = () => {
         <p className="title">로그인</p>
         <div className="id">
           <input
+            placeholder="사용자 이름"
             type="text"
             id="username"
             value={username}
@@ -52,6 +53,7 @@ const Login = () => {
         </div>
         <div className="passwd">
           <input
+            placeholder="비밀번호"
             type="password"
             id="password"
             value={password}
