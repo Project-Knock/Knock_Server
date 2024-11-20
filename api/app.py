@@ -27,6 +27,8 @@ def get_dorm_id(cur):
     if 'user' in session:
         cur.execute("select dormitory from user where username = '{0}'".format(session['user']))
         return cur.fetchall()[0][0]
+    else:
+        return 0
 def role_required(role):
     def decorator(f):
         @wraps(f)
