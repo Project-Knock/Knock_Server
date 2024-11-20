@@ -6,7 +6,12 @@
     grid-template-columns: 1fr 0.625rem 1fr 0.625rem 1fr;
     grid-template-rows: 1fr 0.625rem 4rem 0.625rem 1fr 0.625rem 1fr;
     grid-template-areas: 
-    "display display display . ."
+    "display display display . tmp"
     ". . . . ."
     "control control control control control";
+}
+.tmp{
+    grid-area: tmp;
+    border-radius: 1.5rem;
+    background-color: #D4ECFF;
 }

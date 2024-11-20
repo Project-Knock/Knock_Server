@@ -6,6 +6,7 @@ const RoomInfo = () =>{
     return(
         <div className='room-info'>
             <Card />
+            <div className='tmp'></div>
             <Control />
         </div>
     )
