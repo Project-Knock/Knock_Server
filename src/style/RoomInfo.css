@@ -1,11 +1,12 @@
-.main{
+.room-info{
     display: grid;
     background-color: none;
     height: 100%;
     width: 100%;
     grid-template-columns: 1fr 0.625rem 1fr 0.625rem 1fr;
-    grid-template-rows: 1fr 0.625rem 4rem 0.625rem repeat(2,1fr 0.625rem);
-    grid-template-areas: "display display display . ."
+    grid-template-rows: 1fr 0.625rem 4rem 0.625rem 1fr 0.625rem 1fr;
+    grid-template-areas: 
+    "display display display . ."
     ". . . . ."
     "control control control control control";
 }
