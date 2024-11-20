@@ -6,7 +6,6 @@ import Login from './pages/Login'
 import Signup from './pages/Signup';
 import UserInfo from './pages/UserInfo';
 import './style/App.css'
-import { Link } from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>

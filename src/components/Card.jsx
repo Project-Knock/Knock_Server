@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import '../style/Card.css';
+import '../style/components/Card.css';
 const Card = () => {
 
   const [info, setInfo] = useState({"temperature":0.0,"humidity":0.0});
