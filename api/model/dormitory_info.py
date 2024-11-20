@@ -9,10 +9,10 @@ class DormDB:
         self.cur = self.db.cursor()
         print("connect ok")
     def getTempHumi(self, room):
-        if self.cur.execute("select temperature, humidity from dormitory where number={0}".format(room)) == None:
+        if self.cur.execute("select temperature, humidity, detectedAt from dormitory where number={0}".format(room)) == None:
             return False
         info = self.cur.fetchall()[0]
-        data = {'temperature':info[0],'humidity':info[1]}
+        data = {'temperature':info[0],'humidity':info[1], "detectedAt":info[2]}
         return jsonify(data)
     def ifExists(self, room):
         if self.cur.execute(f"select * from dormitory where number={room}"):
