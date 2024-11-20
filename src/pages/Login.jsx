@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import '../style/Login.css';
-const Login = ({setIsLoggedIn,setUser,setId}) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginCheck, setLoginCheck] = useState(false); // 로그인 상태 체크
@@ -30,9 +30,6 @@ const Login = ({setIsLoggedIn,setUser,setId}) => {
 
     if (result.status === 201) {
       setLoginCheck(false);
-      setUser(username);
-      setId(result.message);
-      setIsLoggedIn(true);
       // Store token in local storage
       console.log(result);
       navigate("/"); // 로그인 성공시 홈으로 이동합니다.

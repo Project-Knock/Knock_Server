@@ -1,27 +1,32 @@
 import React,{useState, useEffect} from 'react';
 import '../style/Card.css';
-const Card = ({isLoggedIn,setIsLoggedIn}) => {
+const Card = () => {
+
   const [info, setInfo] = useState({"temperature":0.0,"humidity":0.0});
+  const [loggedIn,setLoggedIn] = useState(false);
   const loadRoomData = () =>{
+    console.log("hello");
     fetch('/myroom/info/tehu')
       .then((res) => res.json())
       .then((data) => {
         if(data.temperature===null||data.humidity===null){
-          setIsLoggedIn(false);
+          console.log(data);
         }else{
           setInfo({"temperature":data.temperature,"humidity":data.humidity})
-          setIsLoggedIn(true);
         }
       }
     );
   }
-  useEffect(() => {
-    loadRoomData();
-  }, []);
+  useEffect(()=>{ // 현제 서버에 세션이 남아있는지 확인
+    fetch('/is_logged_in').then((res)=>res.json()).then((data)=>{setLoggedIn(data.logged_in)})
+  })
+  useEffect(() => { // loggedIn이 바뀔 때 마다 정보 불러오기
+    if(loggedIn) loadRoomData(); // 현제 세션이 서버에 있을 때 데이터 불러오기
+  },[loggedIn]);
   return(
-      <>
-              <article className='infomation-display'>
-                {isLoggedIn?
+    <>
+      <article className='infomation-display'>
+              {loggedIn?
                 (
                   <>
                     <h1 className='temp'>{info.temperature} C</h1>
@@ -32,10 +37,10 @@ const Card = ({isLoggedIn,setIsLoggedIn}) => {
                       .then((res) => res.json())
                       .then((data) => {
                         if(data.temperature===null||data.humidity===null){
-                          setIsLoggedIn(false);
+                          
                         }else{
                           setInfo({"temperature":data.temperature,"humidity":data.humidity})
-                          setIsLoggedIn(true);
+                         
                         }
                       }
                     );
@@ -45,8 +50,8 @@ const Card = ({isLoggedIn,setIsLoggedIn}) => {
                   <h1 className='temp'>please login</h1>
                 )
               }
-              </article>
-      </>
+      </article>
+    </>
   )
 }
 

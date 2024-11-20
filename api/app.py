@@ -24,11 +24,9 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 def get_dorm_id(cur):
-    try:
+    if 'user' in session:
         cur.execute("select dormitory from user where username = '{0}'".format(session['user']))
         return cur.fetchall()[0][0]
-    except:
-        return False
 def role_required(role):
     def decorator(f):
         @wraps(f)
@@ -87,8 +85,7 @@ def login():
         login_user(user)
         session.permanent = True
         session['user'] = username
-        id=get_dorm_id(cur)
-        return base_api_response(201, id)
+        return base_api_response(201, "susses")
     else:
         return base_api_response(400, "Username and password differ")
     
@@ -133,10 +130,9 @@ def signup():
 @app.route('/is_logged_in')
 def is_logged_in():
     if 'user' in session:
-        id = get_dorm_id(cur)
-        return jsonify({"logged_in": True, "user": session['user'], "id":id})
+        return jsonify({"logged_in": True})
     else:
-        return jsonify({"logged_in": False}), 401
+        return jsonify({"logged_in": False})
 
 image_data = None
 @app.route("/myroom/info/tehu")
