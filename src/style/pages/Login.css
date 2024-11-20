@@ -1,5 +1,5 @@
 .login-container{
-    border-radius: 0.625rem;
+    border-radius: 1.5rem;
     background-color: white;
     height: 20rem;
 }
@@ -44,7 +44,7 @@
 .alter{
     grid-area: alter;
 }
-#username, #password{
+#username, #password, #confirm-password{
     width: 100%;
     height: 100%;
     margin: 0;

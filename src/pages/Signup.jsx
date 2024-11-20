@@ -61,8 +61,8 @@ const Signup = () => {
       <form className="signup-form" onSubmit={handleSignup}>
         <h1 className="title">처음이신가요?</h1>
         <div className="id">
-        <label htmlFor="username">사용자명</label>
         <input
+          placeholder="사용자 이름"
           type="text"
           id="username"
           value={username}
@@ -70,8 +70,8 @@ const Signup = () => {
         />
         </div>
         <div className="passwd">
-        <label htmlFor="password">비밀번호</label>
         <input
+          placeholder="비밀번호"
           type="password"
           id="password"
           value={password}
@@ -79,8 +79,8 @@ const Signup = () => {
         />
         </div>
         <div className="passwd-config">
-        <label htmlFor="confirm-password">비밀번호 확인</label>
         <input
+          placeholder="비밀번호 확인"
           type="password"
           id="confirm-password"
           value={confirmPassword}
@@ -94,7 +94,7 @@ const Signup = () => {
         <label  style={{color: "red"}} className="alter">{signError}</label>
         )}
         <p className="login-link">
-          이미 회원이신가요? <Link to="/login">로그인</Link>
+          이미 회원이신가요? <Link to="/user/login">로그인</Link>
         </p>
       </form>
     </div>

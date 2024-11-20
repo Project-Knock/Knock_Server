@@ -2,8 +2,8 @@ import React,{useState, useEffect} from 'react';
 import '../style/components/Card.css';
 const Card = () => {
 
-  const [info, setInfo] = useState({"temperature":0.0,"humidity":0.0});
-  const [loggedIn,setLoggedIn] = useState(false);
+  const [info, setInfo] = useState({"temperature":"loading...","humidity":"loading..."});
+  const [loggedIn,setLoggedIn] = useState(true);
   const loadRoomData = () =>{
     console.log("hello");
     fetch('/myroom/info/tehu')
