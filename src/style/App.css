@@ -10,3 +10,25 @@ body{
     padding: 1.5rem 2.1875rem;
     background-color: white;
 }
+.re1{
+    width: 41.375rem;
+    height: 32.5625rem;
+    background-color: #001139;
+    border-radius: 50%;
+    position: fixed;
+    top:-40%;
+    left:50%;
+    transform: translate(-50%, 0);
+    z-index: -1;
+}
+.re2{
+    width: 41.375rem;
+    height: 32.5625rem;
+    background-color: #10091C;
+    border-radius: 50%;
+    position: fixed;
+    bottom: -20%;
+    left:50%;
+    transform: translate(-50%, 0);
+    z-index: -1;
+}
