@@ -8,7 +8,9 @@
     grid-template-areas: 
     "display display display . tmp"
     ". . . . ."
-    "control control control control control";
+    "control control control control control"
+    ". . . . ."
+    "camera-dp camera-dp camera-dp camera-dp camera-dp";
 }
 .tmp{
     grid-area: tmp;

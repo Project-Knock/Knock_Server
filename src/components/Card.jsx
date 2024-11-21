@@ -5,7 +5,6 @@ const Card = () => {
   const [info, setInfo] = useState({"temperature":"loading...","humidity":"loading...","detectedAt":"loading..."});
   const [loggedIn,setLoggedIn] = useState(true);
   const loadRoomData = () =>{
-    console.log("hello");
     fetch('/myroom/info/tehu')
       .then((res) => res.json())
       .then((data) => {
