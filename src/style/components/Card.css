@@ -10,6 +10,7 @@
     "timestemp";
     color: white;
     background: linear-gradient(#161057, #05051B);
+    box-shadow: 0px 2px 4px 0 #00000025;
 }
 .temp{
     margin: 0;
