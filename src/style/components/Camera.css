@@ -1,0 +1,6 @@
+.camera-display{
+    grid-area: camera-dp;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 #00000025;
+    border-radius: 1.5rem;
+}

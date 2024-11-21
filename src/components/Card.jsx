@@ -2,17 +2,16 @@ import React,{useState, useEffect} from 'react';
 import '../style/components/Card.css';
 const Card = () => {
 
-  const [info, setInfo] = useState({"temperature":"loading...","humidity":"loading..."});
+  const [info, setInfo] = useState({"temperature":"loading...","humidity":"loading...","detectedAt":"loading..."});
   const [loggedIn,setLoggedIn] = useState(true);
   const loadRoomData = () =>{
-    console.log("hello");
     fetch('/myroom/info/tehu')
       .then((res) => res.json())
       .then((data) => {
         if(data.temperature===null||data.humidity===null){
           console.log(data);
         }else{
-          setInfo({"temperature":data.temperature,"humidity":data.humidity})
+          setInfo({"temperature":data.temperature,"humidity":data.humidity,"detectedAt":data.detectedAt})
         }
       }
     );
@@ -29,22 +28,20 @@ const Card = () => {
               {loggedIn?
                 (
                   <>
-                    <h1 className='temp'>{info.temperature} C</h1>
-                    <h1 className='humi'>{info.humidity} %</h1>
-                    <p className='timestemp'>마지막 확인 시간 : <br/>{null}분</p>
-                    <button className='reload-button' onClick={()=>{
+                    <p className='temp' onClick={()=>{
                       fetch('/myroom/info/tehu')
                       .then((res) => res.json())
                       .then((data) => {
                         if(data.temperature===null||data.humidity===null){
                           
                         }else{
-                          setInfo({"temperature":data.temperature,"humidity":data.humidity})
-                         
+                          setInfo({"temperature":data.temperature,"humidity":data.humidity,"detectedAt":data.detectedAt})
                         }
                       }
                     );
-                    }}>새로고침</button>
+                    }}>{info.temperature}℃</p>
+                    <p className='humi'>현재 습도 {info.humidity}%</p>
+                    <p className='timestemp'>{info.detectedAt}</p>
                   </>
                 ):(
                   <h1 className='temp'>please login</h1>

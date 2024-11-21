@@ -4,21 +4,18 @@
     box-sizing: border-box;
     border-radius: 1.5rem;
     padding: 1rem;
-    grid-template-columns: 1fr 5rem;
-    grid-template-rows: 1fr 1fr 2rem;
-    grid-template-areas: "temp ."
-    "humi ."
-    "timestemp reloadBtn";
+    grid-template-rows: 3.5rem 1fr 2rem;
+    grid-template-areas: "temp"
+    "humi"
+    "timestemp";
     color: white;
-    background: #082c0f;
-}
-.reload-button{
-    grid-area: reloadBtn;
-    border:none;
+    background: linear-gradient(#161057, #05051B);
+    box-shadow: 0px 2px 4px 0 #00000025;
 }
 .temp{
     margin: 0;
     padding: 0;
+    font-size: 2.625rem;
     grid-area: temp;
 }
 .humi{

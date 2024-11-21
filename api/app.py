@@ -28,7 +28,7 @@ def get_dorm_id(cur):
         cur.execute("select dormitory from user where username = '{0}'".format(session['user']))
         return cur.fetchall()[0][0]
     else:
-        return 0
+        return False
 def role_required(role):
     def decorator(f):
         @wraps(f)
@@ -139,7 +139,11 @@ def is_logged_in():
 image_data = None
 @app.route("/myroom/info/tehu")
 def info():
+    std = connect_mysql()
+    cur = std.cursor()
     TempHumi = dorm_db.getTempHumi(get_dorm_id(cur))
+    cur.close()
+    std.close()
     return TempHumi
 
 @app.route("/myroom/door/open")
