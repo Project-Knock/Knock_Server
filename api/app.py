@@ -23,12 +23,9 @@ db = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
-def get_dorm_id(cur):
-    if 'user' in session:
-        cur.execute("select dormitory from user where username = '{0}'".format(session['user']))
-        return cur.fetchall()[0][0]
-    else:
-        return False
+def set_dorm_id(cur):
+    cur.execute("select dormitory from user where username = '{0}'".format(session['user']))
+    session['room'] = cur.fetchall()[0][0]
 def role_required(role):
     def decorator(f):
         @wraps(f)
@@ -57,11 +54,9 @@ def on_message(client, userdata, message):
     elif mtopic[2]=="info" and mtopic[3]=="cam":
         url = message.payload.decode()
         dorm_db.updateCam(mtopic[1],url)
-        print("")
-    
+        print("") 
 client = MqttClient(on_message)
 dorm_db = DormDB()
-
 class User(db.Model, UserMixin):
     id = db.Column(db.String(150), primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
@@ -71,27 +66,27 @@ class User(db.Model, UserMixin):
     
     def has_role(self, role):
         return self.role == role
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-
 @app.route('/login', methods=['POST'])
 def login():
     user = request.json
     username = user['username']
     password = user['password']
     user = User.query.filter_by(username=username).first()
-    
     if user and check_password_hash(user.password, password):
+        std = connect_mysql()
+        cur = std.cursor()
         login_user(user)
         session.permanent = True
         session['user'] = username
+        set_dorm_id(cur)
+        cur.close()
+        std.close()
         return base_api_response(201, "susses")
     else:
         return base_api_response(400, "Username and password differ")
-    
-
 @app.route('/logout')
 @login_required
 def logout():
@@ -141,7 +136,7 @@ image_data = None
 def info():
     std = connect_mysql()
     cur = std.cursor()
-    TempHumi = dorm_db.getTempHumi(get_dorm_id(cur))
+    TempHumi = dorm_db.getTempHumi(session['room'])
     cur.close()
     std.close()
     return TempHumi
@@ -150,7 +145,7 @@ def info():
 def door():
     std = connect_mysql()
     cur = std.cursor()
-    client.Mqtt_Publish(get_dorm_id(cur),"door","open")
+    client.Mqtt_Publish(session['room'],"door","open")
     cur.close()
     std.close()
     return "ok"
@@ -159,7 +154,7 @@ def door():
 def aircon(room,control):
     std = connect_mysql()
     cur = std.cursor()
-    client.Mqtt_Publish(get_dorm_id(cur),"aircon",control)
+    client.Mqtt_Publish(session['room'],"aircon",control)
     cur.close()
     std.close()
     return "ok"
