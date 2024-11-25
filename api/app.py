@@ -92,6 +92,7 @@ def login():
 def logout():
     logout_user()
     session.pop('user', None)
+    session.pop('room', None)
     return base_api_response(200, 'Successfully loged out')
 
 @app.route('/admin', methods=['POST'])
@@ -134,29 +135,17 @@ def is_logged_in():
 image_data = None
 @app.route("/myroom/info/tehu")
 def info():
-    std = connect_mysql()
-    cur = std.cursor()
     TempHumi = dorm_db.getTempHumi(session['room'])
-    cur.close()
-    std.close()
     return TempHumi
 
 @app.route("/myroom/door/open")
 def door():
-    std = connect_mysql()
-    cur = std.cursor()
     client.Mqtt_Publish(session['room'],"door","open")
-    cur.close()
-    std.close()
     return "ok"
 
 @app.route("/myroom/aircon/<control>")
 def aircon(room,control):
-    std = connect_mysql()
-    cur = std.cursor()
     client.Mqtt_Publish(session['room'],"aircon",control)
-    cur.close()
-    std.close()
     return "ok"
 
 @app.route('/')
