@@ -135,9 +135,18 @@ def is_logged_in():
 image_data = None
 @app.route("/myroom/info/tehu")
 def info():
-    TempHumi = dorm_db.getTempHumi(session['room'])
-    return TempHumi
-
+    if 'user' in session:
+        TempHumi = dorm_db.getTempHumi(session['room'])
+        return TempHumi
+    else:
+        return "false"
+@app.route("/myroom/info/cam")
+def cam():
+    if 'user' in session:
+        url = dorm_db.getCamUrl(session['room'])
+        return url
+    else:
+        return "false"
 @app.route("/myroom/door/open")
 def door():
     client.Mqtt_Publish(session['room'],"door","open")
