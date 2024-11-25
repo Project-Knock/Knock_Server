@@ -1,5 +1,5 @@
 # 기숙사 관리 서비스 Knock
-기숙사 관리 서비스 Knock의 서버 리포지토리입니다.
+기숙사 관리 서비스 Knock의 서버 레포지토리입니다.
 ## 사용 환경
 - Raspberry Pi 4 Model B
 - Ubuntu 24.04 LTS
