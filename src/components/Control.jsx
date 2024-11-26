@@ -13,13 +13,13 @@ const ControlBtn = ({src}) =>{
 }
 const Control = () =>{
     return(
-        <header className='control'>
+        <nav className='control'>
             <ul className='control-items'>
                 <ControlBtn src={Window} />
                 <ControlBtn src={Aircon} />
                 <ControlBtn src={Door} />
             </ul>
-        </header>
+        </nav>
     )
 }
 

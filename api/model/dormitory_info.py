@@ -2,14 +2,12 @@ from flask import jsonify
 import pymysql
 from dotenv import load_dotenv
 import os
-def connect(self):
-    self.db = pymysql.connect(host=os.environ.get('DB_HOST'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), db=os.environ.get('DB_NAME'))
-    self.cur = self.db.cursor()
 class DormDB:
     def __init__(self):
         print("connect ok")
     def getTempHumi(self, room):
-        connect(self)
+        self.db = pymysql.connect(host=os.environ.get('DB_HOST'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), db=os.environ.get('DB_NAME'))
+        self.cur = self.db.cursor()
         if self.cur.execute("select temperature, humidity, detectedAt from dormitory where number={0}".format(room)) == None:
             return False
         info = self.cur.fetchall()[0]
@@ -18,7 +16,8 @@ class DormDB:
         self.db.close()
         return jsonify(data)
     def getCamUrl(self, room):
-        connect(self)
+        self.db = pymysql.connect(host=os.environ.get('DB_HOST'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), db=os.environ.get('DB_NAME'))
+        self.cur = self.db.cursor()
         if self.cur.execute("select url from cam where number={0}".format(room)) == None:
             return False
         info = self.cur.fetchall()[0]
@@ -27,7 +26,8 @@ class DormDB:
         self.db.close()
         return jsonify(data)
     def ifExists(self, room):
-        connect(self)
+        self.db = pymysql.connect(host=os.environ.get('DB_HOST'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), db=os.environ.get('DB_NAME'))
+        self.cur = self.db.cursor()
         if self.cur.execute(f"select * from dormitory where number={room}"):
             self.cur.close()
             self.db.close()
@@ -37,19 +37,22 @@ class DormDB:
             self.db.close()
             return False
     def create(self, room):
-        connect(self)
+        self.db = pymysql.connect(host=os.environ.get('DB_HOST'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), db=os.environ.get('DB_NAME'))
+        self.cur = self.db.cursor()
         self.cur.execute("insert into dormitory values('{0}', NULL, NULL, NULL)".format(room))
         self.db.commit()
         self.cur.close()
         self.db.close()
     def updateTehu(self, room, temperature, humidity):
-        connect(self)
+        self.db = pymysql.connect(host=os.environ.get('DB_HOST'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), db=os.environ.get('DB_NAME'))
+        self.cur = self.db.cursor()
         self.cur.execute("update dormitory set temperature={0}, humidity={1} where number={2}".format(float(temperature),float(humidity),int(room)))
         self.db.commit()
         self.cur.close()
         self.db.close()
     def updateCam(self, room, url):
-        connect(self)
+        self.db = pymysql.connect(host=os.environ.get('DB_HOST'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), db=os.environ.get('DB_NAME'))
+        self.cur = self.db.cursor()
         self.cur.execute("update cam set url='{0}' where number={1}".format(str(url),int(room)))
         self.db.commit()
         self.cur.close()

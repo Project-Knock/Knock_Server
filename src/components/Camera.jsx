@@ -13,10 +13,10 @@ const Camera = (loggedIn) =>{
             }
           }
         );
-      }
-      useEffect(() => { // loggedIn이 바뀔 때 마다 정보 불러오기
-        if(loggedIn) loadCamUrl(); // 현제 세션이 서버에 있을 때 데이터 불러오기
-      },[loggedIn]);
+    }
+    useEffect(()=>{
+      if(loggedIn) setTimeout(loadCamUrl,1000);
+    },[loggedIn])
     return(
         <article className='camera-display'>
             <img src={url}/>
