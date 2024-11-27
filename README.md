@@ -22,3 +22,6 @@
 - 오픈소스 MQTT 클라이언트인 Mosquitto를 활용하여 하드웨어와의 통신이 간편합니다.
 ### 학교 안 어디서든 사용 가능
 - 라즈베리파이와 PM2를 활용하여 무중단 서비스를 제공합니다. 학교 인터넷에 연결되면 간편하게 접속할 수 있습니다.
+## 오류 해결법
+### Current process list is not synchronized...
+ - pm2 resurrect 명령어로 pm2 list불러오기
