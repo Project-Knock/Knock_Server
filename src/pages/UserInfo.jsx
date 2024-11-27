@@ -11,7 +11,9 @@ const UserInfo = () => {
             <article className='userinfo-display'>
             {loggedIn?(
                 <>
-
+                    <button onClick={()=>{
+                        fetch('/logout')
+                    }}>logout</button>
                 </>
             ):(
                 <>

@@ -23,12 +23,9 @@ db = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
-def get_dorm_id(cur):
-    if 'user' in session:
-        cur.execute("select dormitory from user where username = '{0}'".format(session['user']))
-        return cur.fetchall()[0][0]
-    else:
-        return False
+def set_dorm_id(cur):
+    cur.execute("select dormitory from user where username = '{0}'".format(session['user']))
+    session['room'] = cur.fetchall()[0][0]
 def role_required(role):
     def decorator(f):
         @wraps(f)
@@ -42,10 +39,6 @@ def role_required(role):
 def connect_mysql():
     return pymysql.connect(host=os.environ.get('DB_HOST'), user=os.environ.get('DB_USER'), password=os.environ.get('DB_PASSWORD'), db=os.environ.get('DB_NAME'))
 
-
-mysql = connect_mysql()
-cur = mysql.cursor()
-
 def on_message(client, userdata, message):
     mtopic = message.topic.split("/")
     if mtopic[2]=="info" and mtopic[3]=="temphumi":
@@ -57,57 +50,57 @@ def on_message(client, userdata, message):
     elif mtopic[2]=="info" and mtopic[3]=="cam":
         url = message.payload.decode()
         dorm_db.updateCam(mtopic[1],url)
-        print("")
-    
+        print("") 
 client = MqttClient(on_message)
 dorm_db = DormDB()
-
 class User(db.Model, UserMixin):
     id = db.Column(db.String(150), primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
     role = db.Column(db.String(50), default='user')  # 역할 필드, 기본값은 'user'
     dormitory = db.Column(db.Integer)
-    
     def has_role(self, role):
         return self.role == role
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-
 @app.route('/login', methods=['POST'])
 def login():
     user = request.json
     username = user['username']
     password = user['password']
     user = User.query.filter_by(username=username).first()
-    
     if user and check_password_hash(user.password, password):
+        std = connect_mysql()
+        cur = std.cursor()
         login_user(user)
         session.permanent = True
         session['user'] = username
+        set_dorm_id(cur)
+        cur.close()
+        std.close()
         return base_api_response(201, "susses")
     else:
         return base_api_response(400, "Username and password differ")
-    
-
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     session.pop('user', None)
+    session.pop('room', None)
     return base_api_response(200, 'Successfully loged out')
-
 @app.route('/admin', methods=['POST'])
 @login_required
 @role_required('admin')
 def admin():
     data = request.json
+    mysql = connect_mysql()
+    cur = mysql.cursor()
     cur.execute(f"insert into {data['table']} values({str(data['items'])[1:-1]})")
     cur.execute(f"select * from {data['table']}")
+    cur.close()
+    mysql.close()
     return base_api_response(200, cur.fetchall())
-
 @app.route("/signup", methods=['POST'])
 def signup():
     user = request.json
@@ -121,47 +114,46 @@ def signup():
     if User.query.filter_by(username=username).first():
         return base_api_response(402, "This username has been signed up already")
     hashed_password = generate_password_hash(password, method=os.environ.get('HASH'))
+    std = connect_mysql()
+    cur = std.cursor()
     cur.execute(f"select dormitory from student where id = {id}")
     row = cur.fetchall()
     new_user = User(id = id, username = username, password = hashed_password, role='user')
     db.session.add(new_user)
     db.session.get
     db.session.commit()
+    cur.close()
+    std.close()
     return base_api_response(201, "Successfully signed up")
-
 @app.route('/is_logged_in')
 def is_logged_in():
     if 'user' in session:
         return jsonify({"logged_in": True})
     else:
         return jsonify({"logged_in": False})
-
 image_data = None
 @app.route("/myroom/info/tehu")
 def info():
-    std = connect_mysql()
-    cur = std.cursor()
-    TempHumi = dorm_db.getTempHumi(get_dorm_id(cur))
-    cur.close()
-    std.close()
-    return TempHumi
-
+    if 'user' in session:
+        TempHumi = dorm_db.getTempHumi(session['room'])
+        return TempHumi
+    else:
+        return "false"
+@app.route("/myroom/info/cam")
+def cam():
+    if 'user' in session:
+        url = dorm_db.getCamUrl(session['room'])
+        return url
+    else:
+        return "false"
 @app.route("/myroom/door/open")
 def door():
-    std = connect_mysql()
-    cur = std.cursor()
-    client.Mqtt_Publish(get_dorm_id(cur),"door","open")
-    cur.close()
-    std.close()
+    client.Mqtt_Publish(session['room'],"door","open")
     return "ok"
 
 @app.route("/myroom/aircon/<control>")
 def aircon(room,control):
-    std = connect_mysql()
-    cur = std.cursor()
-    client.Mqtt_Publish(get_dorm_id(cur),"aircon",control)
-    cur.close()
-    std.close()
+    client.Mqtt_Publish(session['room'],"aircon",control)
     return "ok"
 
 @app.route('/')
