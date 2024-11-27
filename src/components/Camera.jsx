@@ -19,7 +19,8 @@ const Camera = (loggedIn) =>{
     },[loggedIn])
     return(
         <article className='camera-display'>
-            <img src={url}/>
+          <p className='cam-title'>Camera</p>
+          <img className='camera' src={url}/>
         </article>
     )
 }
