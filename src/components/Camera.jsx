@@ -15,8 +15,8 @@ const Camera = (loggedIn) =>{
         );
     }
     useEffect(()=>{
-      if(loggedIn) setTimeout(loadCamUrl,1000);
-    },[loggedIn])
+      if(loggedIn.loggedIn) setTimeout(loadCamUrl,1000);
+    },[loggedIn.loggedIn])
     return(
         <article className='camera-display'>
           <p className='cam-title'>Camera</p>
