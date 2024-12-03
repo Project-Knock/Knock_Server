@@ -152,7 +152,7 @@ def door():
     return "ok"
 
 @app.route("/myroom/aircon/<control>")
-def aircon(room,control):
+def aircon(control):
     client.Mqtt_Publish(session['room'],"aircon",control)
     return "ok"
 
