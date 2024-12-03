@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import '../style/components/Camera.css'
+import '../style/components/ControlCard.css'
 const Camera = (loggedIn) =>{
     const [url,setUrl] = useState(null);
     const loadCamUrl = () =>{
@@ -18,11 +18,10 @@ const Camera = (loggedIn) =>{
       if(loggedIn.loggedIn) setTimeout(loadCamUrl,1000);
     },[loggedIn.loggedIn])
     return(
-        <article className='camera-display'>
-          <p className='cam-title'>Camera</p>
-          <img className='camera' src={url}/>
+        <article className='control-display'>
+          <p className='control-title'>문 밖</p>
+          <img className='control-content' src={url}/>
         </article>
     )
 }
-
 export default Camera

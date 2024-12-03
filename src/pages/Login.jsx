@@ -65,7 +65,7 @@ const Login = () => {
         )}
         <button onClick={handleLogin} className="loginbt">로그인</button>
 
-        <p className="signup-link">
+        <p className="link">
           아직 회원이 아니신가요? <Link to="/user/signup">회원가입</Link>
         </p>
       </form>

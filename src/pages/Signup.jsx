@@ -59,7 +59,7 @@ const Signup = () => {
   return (
     <div className="signup-container">
       <form className="signup-form" onSubmit={handleSignup}>
-        <h1 className="title">처음이신가요?</h1>
+        <p className="title">처음이신가요?</p>
         <div className="id">
         <input
           placeholder="사용자 이름"
@@ -93,7 +93,7 @@ const Signup = () => {
         {signupCheck && (
         <label  style={{color: "red"}} className="alter">{signError}</label>
         )}
-        <p className="login-link">
+        <p className="link">
           이미 회원이신가요? <Link to="/user/login">로그인</Link>
         </p>
       </form>

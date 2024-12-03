@@ -96,10 +96,7 @@
     transition: background-color 0.05s,top 0.3s;
 }
 #select{
-    background-color: #ffffff;
+    background-color: #D7D7D7;
     box-sizing: border-box;
     height: 100%;
-}
-#select > li > img{
-    fill: invert;
 }

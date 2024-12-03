@@ -1,4 +1,4 @@
-.camera-display{
+.control-display{
     grid-area: camera-dp;
     display: grid;
     background-color: white;
@@ -7,9 +7,9 @@
     grid-template-rows: 2rem 1fr 0.5rem;
     grid-template-columns: 0.5rem 1fr 0.5rem;
     grid-template-areas: ". title ."
-                        ". camera .";
+                        ". content .";
 }
-.cam-title{
+.control-title{
     display: flex;
     grid-area: title;
     align-items: center;
@@ -17,8 +17,8 @@
     padding: 0;
     font-size: 1.25rem;
 }
-.camera{
-    grid-area: camera;
+.control-content{
+    grid-area: content;
     height: 100%;
     width: 100%;
     border-radius: 1rem;
