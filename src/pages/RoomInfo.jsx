@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Card from '../components/Card';
 import Control from '../components/Control';
 import Camera from '../components/Camera';
+import Aircon from '../components/Aircon';
 import '../style/pages/RoomInfo.css'
 const RoomInfo = () =>{
     const [loggedIn,setLoggedIn] = useState(true);
@@ -13,7 +15,10 @@ const RoomInfo = () =>{
             <Card loggedIn={loggedIn}/>
             <div className='tmp'></div>
             <Control />
-            <Camera loggedIn={loggedIn}/>
+                <Routes>
+                    <Route path='/door' element={<Camera loggedIn={loggedIn}/>}></Route>
+                    <Route path='/aircon' element={<Aircon />}></Route>
+                </Routes>
         </div>
     )
 }
