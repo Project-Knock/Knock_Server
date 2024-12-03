@@ -1,14 +1,28 @@
 .App{
     height: 100%;
     width: 100%;
+    max-width: 550px;
     padding-top: 5.25rem;
     box-sizing: border-box;
 }
-body{
-    overflow:hidden;
-    box-sizing: border-box;
-    padding: 1.5rem 2.1875rem;
-    background-color: white;
+@media screen and (max-width:622px){
+    body{
+        overflow:hidden;
+        box-sizing: border-box;
+        padding: 1.5rem 2.1875rem;
+        background-color: white;
+    }     
+}
+@media screen and (min-width:622px) {
+    body{
+        overflow:hidden;
+        box-sizing: border-box;
+        padding: 1.5rem 0;
+        background-color: white;
+    }
+    #root{
+        margin: 0 auto;
+    }
 }
 .re1{
     width: 41.375rem;

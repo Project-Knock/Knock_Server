@@ -2,6 +2,7 @@
     position:fixed;
     top:1.5rem;
     width: calc(100vw - 4.375rem);
+    max-width: 550px;
     background-color: white;
     height: 4rem;
     border-radius: 0.625rem;
