@@ -23,19 +23,6 @@
     padding: 0;
     margin: 0;
 }
-.title{
-    grid-area: title;
-}
-.id{
-    grid-area: id;
-    display: flex;
-    justify-content: space-between;
-}
-.passwd{
-    grid-area: passwd;
-    display: flex;
-    justify-content: space-between;
-}
 .passwd-config{
     grid-area: passwd-con;
     display: flex;
@@ -43,10 +30,4 @@
 }
 .signbt{
     grid-area: signbt;
-}
-.login-link{
-    grid-area: link;
-}
-.alter{
-    grid-area: alter;
 }

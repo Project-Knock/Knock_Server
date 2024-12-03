@@ -21,29 +21,10 @@
     padding: 0;
     margin: 0;
 }
-.title{
-    grid-area: title;
-    font-size: 1.25rem;
-}
-.id{
-    grid-area: id;
-    display: flex;
-    justify-content: space-between;
-}
-.passwd{
-    grid-area: passwd;
-    display: flex;
-    justify-content: space-between;
-}
 .loginbt{
     grid-area: loginbt;
 }
-.signup-link{
-    grid-area: link;
-}
-.alter{
-    grid-area: alter;
-}
+
 #username, #password, #confirm-password{
     width: 100%;
     height: 100%;
