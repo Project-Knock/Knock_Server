@@ -17,7 +17,6 @@ const Navigate = () =>{
     return(
         <header className='navigate'>
             <ul className='navigate-items'>
-                <NavigateBtn path='/' src={Home} />
                 <NavigateBtn path='/myroom' src={Bed} />
                 <NavigateBtn path='/user' src={User} />
             </ul>

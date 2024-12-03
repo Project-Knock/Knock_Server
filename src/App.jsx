@@ -12,7 +12,7 @@ function App() {
         <Navigate />
         <div className="App">
           <Routes>
-            <Route path='/myroom' element={<RoomInfo />}></Route>
+            <Route path='/myroom/*' element={<RoomInfo />}></Route>
             <Route path='/user' element={<UserInfo />}></Route>
             <Route path='/user/login' element={<Login />}></Route>
             <Route path='/user/signup' element={<Signup />}></Route>
