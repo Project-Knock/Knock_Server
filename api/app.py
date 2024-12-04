@@ -149,12 +149,12 @@ def cam():
 @app.route("/myroom/door/open")
 def door():
     client.Mqtt_Publish(session['room'],"door","open")
-    return "ok"
+    return base_api_response(201, "Successfully signed up")
 
 @app.route("/myroom/aircon/<control>")
 def aircon(control):
     client.Mqtt_Publish(session['room'],"aircon",control)
-    return "ok"
+    return base_api_response(201, "Successfully signed up")
 
 @app.route('/')
 def index():
