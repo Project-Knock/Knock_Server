@@ -1,0 +1,49 @@
+.aircon-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:". power updown";
+}
+.power{
+    grid-area: power;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    border: 1px solid #000;
+    background-color: #F5F5F5;
+    margin: 2rem auto;
+}
+.power:active{
+    background-color: #7d7d7d;
+}
+.updown{
+    grid-area: updown;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+}
+.up{
+    height: 50%;
+    width: 5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    border-bottom: none;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    background-color: #F5F5F5;
+}
+.up:active{
+    background-color: #7d7d7d;
+}
+.down{
+    height: 50%;
+    width: 5rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    border-bottom: 1px solid #000;
+    border-top: none;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    background-color: #F5F5F5;
+}
+.down:active{
+    background-color: #7d7d7d;
+}
