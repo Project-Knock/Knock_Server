@@ -1,5 +1,16 @@
 .control-display{
-    grid-area: camera-dp;
+    grid-area: control-dp;
+    display: grid;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 #00000025;
+    border-radius: 1.5rem;
+    grid-template-rows: 2rem 1fr 0.5rem;
+    grid-template-columns: 0.5rem 1fr 0.5rem;
+    grid-template-areas: ". title ."
+                        ". content .";
+}
+.etc-display{
+    grid-area: etc;
     display: grid;
     background-color: white;
     box-shadow: 0 2px 4px 0 #00000025;

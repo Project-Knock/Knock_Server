@@ -7,5 +7,5 @@ class MqttClient:
         self.client.subscribe("room/+/info/#")
         self.client.loop_start()
     def Mqtt_Publish(self,room,request,message):
-        self.client.publish("room/"+room+"/control/"+request,message)
+        self.client.publish("room/"+str(room)+"/control/"+request,message)
         

@@ -14,7 +14,7 @@ const RoomInfo = () =>{
         <div className='room-info'>
             <Card loggedIn={loggedIn}/>
             <div className='tmp'></div>
-            <Control />
+            <Control loggedIn={loggedIn}/>
                 <Routes>
                     <Route path='/door' element={<Camera loggedIn={loggedIn}/>}></Route>
                     <Route path='/aircon' element={<Aircon />}></Route>
