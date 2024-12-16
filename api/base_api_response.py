@@ -5,4 +5,4 @@ def base_api_response(status, message, data=[]):
         "message":message,
         "data":data
     }
-    return jsonify(response)
+    return jsonify(response) 
